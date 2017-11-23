@@ -1,0 +1,71 @@
+
+R version 3.4.2 (2017-09-28) -- "Short Summer"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+
+   Velkommen til R!
+
+> #Test-URL: https://www.vegvesen.no/public/webkamera/kamera?id=100094
+> #https://github.com/bnosac/taskscheduleR/blob/master/README.md
+> 
+> setwd("C:/Users/n633164/Documents/R/veibilder")
+> 
+> koder <- c(100094, 100092, 100091, 100093)
+> steder <- c("Romarheimsdalen", "Kvamskogen", "Sotrabrua Vest", "Eidesmoen")
+> cams <- data.frame(navn = steder, kode = koder, stringsAsFactors = FALSE)
+> url1 <- "http://www.vegvesen.no/public/webkamera/kamera?id="
+> 
+> get.img <- function(x) {
++ 	url <- paste0(url1, x)
++ 	sted <- cams$navn[cams$kode == x]
++ 	tid <- as.character(Sys.time())
++ 	tid <- gsub(":", "-", tid)
++ 	langurl <- "C://Users/n633164/NRK/DK-redaksjonen Hordaland - 01 Nett/Nettbilder/veibilder/"
++ 	filnavn <- paste0(langurl, tid, " ", sted, ".jpg")
++ 	download.file(url, filnavn, mode="wb")
++ 	}
+> 
+> for (i in koder) {get.img(i)}
+trying URL 'http://www.vegvesen.no/public/webkamera/kamera?id=100094'
+Content type 'image/jpeg' length 48462 bytes (47 KB)
+==================================================
+downloaded 47 KB
+
+trying URL 'http://www.vegvesen.no/public/webkamera/kamera?id=100092'
+Content type 'image/jpeg' length 45459 bytes (44 KB)
+==================================================
+downloaded 44 KB
+
+trying URL 'http://www.vegvesen.no/public/webkamera/kamera?id=100091'
+Content type 'image/jpeg' length unknown
+.......... .......... .......... .......... ..........
+.......... ........
+downloaded 68 KB
+
+trying URL 'http://www.vegvesen.no/public/webkamera/kamera?id=100093'
+Content type 'image/jpeg' length unknown
+.......... .......... .......... ..
+downloaded 32 KB
+
+> 
+
+   Ha det!
+
+> proc.time()
+   user  system elapsed 
+   0.21    0.26    0.89 

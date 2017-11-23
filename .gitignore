@@ -1,0 +1,4 @@
+#Gitignore files
+
+.Rout
+.RData
