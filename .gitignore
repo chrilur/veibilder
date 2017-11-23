@@ -1,4 +1,4 @@
 #Gitignore files
 
-*.Rout
+webscr.Rout
 *.RData
